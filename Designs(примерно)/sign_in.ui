@@ -58,8 +58,26 @@
             <pointsize>15</pointsize>
            </font>
           </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="inputMethodHints">
+           <set>Qt::ImhNone</set>
+          </property>
+          <property name="inputMask">
+           <string/>
+          </property>
           <property name="text">
-           <string>Логин</string>
+           <string/>
+          </property>
+          <property name="dragEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="placeholderText">
+           <string>Логин(Имя пользователя)</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>false</bool>
           </property>
          </widget>
         </item>
@@ -71,6 +89,9 @@
            </font>
           </property>
           <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
            <string>Пароль</string>
           </property>
          </widget>
