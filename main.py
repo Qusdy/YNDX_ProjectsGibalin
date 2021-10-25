@@ -3,6 +3,7 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QDialog
 
+import registration_form
 
 class Main_Form(QDialog):
     def __init__(self):
@@ -14,18 +15,8 @@ class Main_Form(QDialog):
         self.btn_registration.clicked.connect(self.open_registration)
 
     def open_registration(self):
-        self.registration_form = Registration_Form()
+        self.registration_form = registration_form.Registration_Form()
         self.registration_form.show()
-
-
-class Registration_Form(QDialog):
-    def __init__(self):
-        super().__init__()
-        self.initUI()
-
-    def initUI(self):
-        uic.loadUi('Designs(примерно)/registration.ui', self)
-
 
 
 def except_hook(cls, exception, traceback):
