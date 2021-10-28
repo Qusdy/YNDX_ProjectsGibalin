@@ -40,45 +40,11 @@
    <property name="tabBarAutoHide">
     <bool>false</bool>
    </property>
-   <widget class="QWidget" name="tab">
+   <widget class="QWidget" name="tab_main_block">
     <attribute name="title">
      <string>Основное</string>
     </attribute>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>41</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="mouseTracking">
-      <bool>true</bool>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>../Фотографии, использованные в ТЗ/folder.jpg</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="textInteractionFlags">
-      <set>Qt::TextSelectableByMouse</set>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="comboBox_to_sort">
      <property name="geometry">
       <rect>
        <x>590</x>
@@ -123,7 +89,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="sort_lbl">
      <property name="geometry">
       <rect>
        <x>590</x>
@@ -141,64 +107,7 @@
       <string>Отсортировать</string>
      </property>
     </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>59</y>
-       <width>632</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QCheckBox" name="checkBox">
-        <property name="font">
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Название цели</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Дедлайн до завтра</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Редактировать</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="btn_making_goal">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -216,7 +125,7 @@
       <string>Создать цель</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="btn_deleting">
      <property name="geometry">
       <rect>
        <x>550</x>
@@ -234,7 +143,7 @@
       <string>Удалить</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="btn_making_block">
      <property name="geometry">
       <rect>
        <x>240</x>
@@ -252,68 +161,8 @@
       <string>Создать блок целей</string>
      </property>
     </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget_2">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>110</y>
-       <width>631</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QCheckBox" name="checkBox_2">
-        <property name="font">
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Пример папки</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Редактировать</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Открыть</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
    </widget>
-   <widget class="QWidget" name="tab_2">
+   <widget class="QWidget" name="tab_calendar">
     <attribute name="title">
      <string>Календарь</string>
     </attribute>
@@ -338,11 +187,11 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_3">
+   <widget class="QWidget" name="tab_profile">
     <attribute name="title">
      <string>Профиль</string>
     </attribute>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="picture">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -354,14 +203,11 @@
      <property name="text">
       <string/>
      </property>
-     <property name="pixmap">
-      <pixmap>../Фотографии, использованные в ТЗ/standart_pic.png</pixmap>
-     </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="lbl_name_pointer">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -379,7 +225,7 @@
       <string>Имя профиля:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_6">
+    <widget class="QLabel" name="lbl_name">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -396,10 +242,10 @@
       </font>
      </property>
      <property name="text">
-      <string>Всё равно отложу на воскресенье</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="btn_settings">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -425,9 +271,6 @@
        <width>200</width>
        <height>200</height>
       </rect>
-     </property>
-     <property name="text">
-      <string>Здесь круговая диаграмма</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -480,9 +323,6 @@
        <height>20</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Выполненно всего - 0</string>
-     </property>
     </widget>
     <widget class="QLabel" name="label_11">
      <property name="geometry">
@@ -492,9 +332,6 @@
        <width>131</width>
        <height>20</height>
       </rect>
-     </property>
-     <property name="text">
-      <string>Невыполненно - 1000000</string>
      </property>
     </widget>
     <widget class="QWidget" name="verticalLayoutWidget">
@@ -508,7 +345,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label_12">
+       <widget class="QLabel" name="lbl_goals_to_tomorrow">
         <property name="font">
          <font>
           <pointsize>13</pointsize>
@@ -516,41 +353,6 @@
         </property>
         <property name="text">
          <string>Задачи до завтра</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_3">
-        <property name="text">
-         <string>Ничего не делать</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_4">
-        <property name="text">
-         <string>Отложить на послезавтра</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_5">
-        <property name="text">
-         <string>Отдохнуть</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_6">
-        <property name="text">
-         <string>Отдохнуть от отдыха</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_7">
-        <property name="text">
-         <string>Лечь спать в 3:00</string>
         </property>
        </widget>
       </item>
