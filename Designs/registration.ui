@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>360</y>
+     <y>390</y>
      <width>161</width>
      <height>61</height>
     </rect>
@@ -31,11 +31,11 @@
     <string>Сменить фото</string>
    </property>
   </widget>
-  <widget class="QLabel" name="pic">
+  <widget class="QLabel" name="lbl_pic">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>50</y>
+     <y>80</y>
      <width>300</width>
      <height>300</height>
     </rect>
@@ -53,30 +53,12 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="lbl_clarification">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>20</y>
-     <width>221</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>#Стандартное изображение</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>110</y>
-     <width>272</width>
+     <x>360</x>
+     <y>120</y>
+     <width>368</width>
      <height>170</height>
     </rect>
    </property>
@@ -93,11 +75,14 @@
      <widget class="QLabel" name="lbl_name">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>12</pointsize>
        </font>
       </property>
       <property name="text">
        <string>Желаемое имя пользователя</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -108,17 +93,20 @@
         <pointsize>15</pointsize>
        </font>
       </property>
+      <property name="placeholderText">
+       <string>Введите логин</string>
+      </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="lbl_password">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>12</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>Пароль</string>
+       <string>Пароль(cостоит из 6 или более символов)</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -131,6 +119,9 @@
        <font>
         <pointsize>15</pointsize>
        </font>
+      </property>
+      <property name="placeholderText">
+       <string>Введите пароль</string>
       </property>
      </widget>
     </item>
@@ -157,9 +148,9 @@
   <widget class="QLabel" name="error_label">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>20</y>
-     <width>331</width>
+     <x>360</x>
+     <y>70</y>
+     <width>371</width>
      <height>41</height>
     </rect>
    </property>
@@ -615,6 +606,42 @@
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_warning">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>20</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Фотография желательно квадратная или близкая к этому. Воз-</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_warning_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>40</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>можно неккоректное отображение из-за разрешения и размера</string>
    </property>
   </widget>
  </widget>

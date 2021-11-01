@@ -161,6 +161,37 @@
       <string>Создать блок целей</string>
      </property>
     </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>571</width>
+       <height>421</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="goals_layout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
+     </layout>
+    </widget>
+    <widget class="QScrollBar" name="scroll_bar">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>100</y>
+       <width>21</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_calendar">
     <attribute name="title">
@@ -191,7 +222,7 @@
     <attribute name="title">
      <string>Профиль</string>
     </attribute>
-    <widget class="QLabel" name="picture">
+    <widget class="QLabel" name="lbl_picture">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -237,7 +268,7 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
-       <italic>true</italic>
+       <italic>false</italic>
        <underline>true</underline>
       </font>
      </property>
