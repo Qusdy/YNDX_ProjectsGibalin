@@ -7,17 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>521</height>
+    <height>339</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Создание папки</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="name_of_folder_input">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>30</y>
+     <x>70</x>
+     <y>80</y>
      <width>251</width>
      <height>31</height>
     </rect>
@@ -34,11 +34,11 @@
     <string>Название папки</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="lbl_deadline">
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>80</y>
+     <y>130</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -56,72 +56,40 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>100</y>
+     <y>150</y>
      <width>341</width>
      <height>80</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="btn_today">
       <property name="text">
        <string>Сегодня</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="btn_tomorrow">
       <property name="text">
        <string>Завтра</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QDateEdit" name="dateEdit"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>180</y>
-     <width>321</width>
-     <height>211</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>400</y>
-     <width>191</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="text">
-       <string>Добавить</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="text">
-       <string>Удалить</string>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="displayFormat">
+       <string>dd-MM-yyyy</string>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="btn_to_create">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>470</y>
+     <x>110</x>
+     <y>250</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -132,7 +100,65 @@
     </font>
    </property>
    <property name="text">
-    <string>Сохранить</string>
+    <string>Создать</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_error">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>120</red>
+         <green>120</green>
+         <blue>120</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

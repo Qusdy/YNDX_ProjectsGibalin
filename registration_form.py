@@ -1,16 +1,8 @@
-import sqlite3
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QDialog, QFileDialog
-from PIL import Image
-
-
-class Length_Of_Password_Error(Exception): # Ошибка в случае, если длина меньше 6 символов
-    pass
-
-
-class Name_Already_Taken_Error(Length_Of_Password_Error): # Ошибка в случае, если имя, введенное пользователем уже есть
-    pass
+from errors import Length_Of_Password_Error, Name_Already_Taken_Error, Name_Is_Not_Written
+from WORKING_WITH_DB_USERS import *
 
 
 class Registration_Form(QDialog):
@@ -32,41 +24,37 @@ class Registration_Form(QDialog):
         login = self.name_input.text() # Считываем логин и пароль, введенные пользователем
         password = self.password_input.text()
 
-        con = sqlite3.connect('bd_users.sqlite')
-        cur = con.cursor()
         try:
             self.checking_password_and_login(login, password) # Проверяем на ошибки введенные логин и пароль
 
             if self.avatar_is_there != None: # Если фотография была выбрана
                 # Сохраняем в папке Фотографии пользователей фотографию, выбранную пользователем в виде
                 # Имя пользователя.Имя формата
+
+                saving_new_profile_photo(self.avatar_is_there, login)
                 format_name = self.avatar_is_there.split('.')[1]
-                image = Image.open(self.avatar_is_there)
-                image.save(f'Фотографии пользователей/{login}.{format_name}')
-
                 # Записываем в базу данных всю информацию о пользователе
-                cur.execute("""INSERT into name_password(name, password, picture, picture_format) VALUES(?, ?, ?, ?)""",
-                            (login, password, login, format_name)) # Файлы изображений имеют то же самое имя, что и логин
-                con.commit()
-
-                self.registration_form.close()
-
+                registration_with_changing_photo(login, password, format_name) # Файлы изображений имеют то же самое имя, что и логин
             else: # В ином случае записываем имя и пароль пользователя, а фотография остается стандартной
-                cur.execute("""INSERT into name_password(name, password) VALUES(?, ?)""", (login, password))
-                con.commit()
-                self.registration_form.close()
+                registration_without_changing_photo(login, password)
+
+            id = get_id(login)
+            create_tables(id)
+
+            self.registration_form.close()
         # Вывод ошибок на эран
         except Name_Already_Taken_Error:
             self.error_label.setText('Имя уже занято!')
         except Length_Of_Password_Error:
             self.error_label.setText('Пароль слишком короткий!')
+        except Name_Is_Not_Written:
+            self.error_label.setText('Вы ничего не ввели!')
 
     def checking_password_and_login(self, login, password): # Метод для проверки наличия ошибок при регистрации пользователя
-        con = sqlite3.connect('bd_users.sqlite')
-        cur = con.cursor()
-        if cur.execute("""SELECT id FROM name_password WHERE name = ?""",
-                       (login, )).fetchall() != []:
+        if is_there_that_name(login):
             raise Name_Already_Taken_Error
+        elif login == '':
+            raise Name_Is_Not_Written
         elif len(password) < 6:
             raise Length_Of_Password_Error
 
