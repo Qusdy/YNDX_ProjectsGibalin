@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QDialog, QFileDialog, QInputDialog, QMessageBox
 from WORKING_WITH_DB_USERS import *
 from errors import Name_Already_Taken_Error
 import os
-from main import *
+import main
 
 class Settings_Form(QDialog):
     def __init__(self, login, main_form):
@@ -93,12 +93,12 @@ class Settings_Form(QDialog):
 
     def update_the_main_window(self, login):
         self.main_form.close()
-        Main_Form(self.new_form, login)
+        main.Main_Form(self.new_form, login)
 
     def delete_account(self):
         if self.open_dialog():
             delete_account(self.last_login)
-            Sign_In()
+            main.Sign_In()
             self.new_form.close()
             self.main_form.close()
 
