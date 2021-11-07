@@ -1,10 +1,11 @@
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QDialog, QFileDialog, QInputDialog, QMessageBox
+from PyQt5.QtWidgets import QDialog, QFileDialog, QInputDialog
 from WORKING_WITH_DB_USERS import *
 from errors import Name_Already_Taken_Error
 import os
 import main
+from MessageBox import open_dialog
 
 class Settings_Form(QDialog):
     def __init__(self, login, main_form):
@@ -96,20 +97,8 @@ class Settings_Form(QDialog):
         main.Main_Form(self.new_form, login)
 
     def delete_account(self):
-        if self.open_dialog():
+        if open_dialog():
             delete_account(self.last_login)
             main.Sign_In()
             self.new_form.close()
             self.main_form.close()
-
-    def open_dialog(self):
-        msgBox = QMessageBox()
-        msgBox.setModal(True)
-        msgBox.setText("Вы уверены?")
-        msgBox.setWindowTitle("Удаление аккаунта")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        result = msgBox.exec()
-
-        if result == msgBox.Ok:
-            return True
-        return False

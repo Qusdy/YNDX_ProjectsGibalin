@@ -145,3 +145,13 @@ def get_block_id(name_of_table, name_of_block):
 
 def get_date(name_of_table, name_of_object):
     return '.'.join(cur.execute(f'SELECT deadline FROM {name_of_table} WHERE name = ?', (name_of_object,)).fetchall()[0][0].split('-')[::-1])
+
+def remove_goal_from_block_db(goal_to_remove, block_id, table_name):
+    cur.execute(f'UPDATE {table_name} SET is_deleted = True WHERE folder = ? AND name = ?', (block_id, goal_to_remove,))
+    cur.execute(f'DELETE FROM {table_name} WHERE is_deleted = True')
+    con.commit()
+
+def delete_block(name_of_table, block_name):
+    cur.execute(f'UPDATE {name_of_table} SET is_deleted = True WHERE name = ?', (block_name,))
+    cur.execute(f'DELETE FROM {name_of_table} WHERE is_deleted = True')
+    con.commit()
