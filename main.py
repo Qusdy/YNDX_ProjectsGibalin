@@ -1,9 +1,9 @@
 import sys
-from PyQt5.QtWidgets import QApplication
+from PyQt5 import uic
+from PyQt5.QtWidgets import QApplication, QDialog
+from PyQt5.QtGui import QPixmap
 from errors import Invalid_Login, Incorrect_Password
-from registration_form import *
-from creating_block import *
-import settings_form
+import registration_form, creating_block, block_editing, creating_goal, settings_form
 from WORKING_WITH_DB_USERS import *
 
 
@@ -18,17 +18,74 @@ class Main_Form(QDialog):
         last_form.close()
 
         self.login = login
+        self.id = get_id(self.login)
+        self.table_goals = 'goals_' + str(self.id)
+        self.table_blocks = 'blocks_' + str(self.id)
 
         self.set_profile_settings()
+
+        self.set_standart_sorted_goals()
 
         self.connecting_btns()
 
     def connecting_btns(self):
         self.btn_making_block.clicked.connect(self.create_block)
+        self.btn_making_goal.clicked.connect(self.create_goal)
+        self.comboBox_to_sort.currentIndexChanged.connect(self.change_sorting)
+        self.goals_listWidget.itemDoubleClicked.connect(self.double_click_handling)
+
+    def set_standart_sorted_goals(self):
+        # Получим отсортированный список дат
+        # Всех объектов (Целей, блоков целей)
+        dates = get_all_dates(self.table_goals, self.table_blocks)
+        for date in dates:
+            objects = get_all_objects(self.table_goals, self.table_blocks, date)
+            # Для удобного отображения приведем дату в привычный для нас вид
+            self.goals_listWidget.addItem('Дедлайн до: ' + '.'.join(date.split('-')[::-1]))
+            for name in objects:
+                self.goals_listWidget.addItem('\t' + name)
+
+    def set_only_blocks(self):
+        all_blocks_dates = get_dates_without_repeating(get_list(search_blocks_dates(self.table_blocks))) # Убираем повторяющиеся даты из полученного списка дат
+        for date in all_blocks_dates:
+            blocks = get_list(get_blocks_on_this_date(self.table_blocks, date))
+
+            self.goals_listWidget.addItem('Дедлайн до: ' + '.'.join(date.split('-')[::-1]))
+            for name in blocks:
+                self.goals_listWidget.addItem('\t' + name)
+
+    def set_only_goals(self):
+        all_goals_dates = get_dates_without_repeating(get_list(search_goals_dates(self.table_goals))) # Убираем повторяющиеся даты из полученного списка дат
+        for date in all_goals_dates:
+            goals = get_list(get_goals_on_this_date(self.table_goals, date))
+
+            self.goals_listWidget.addItem('Дедлайн до: ' + '.'.join(date.split('-')[::-1]))
+            for name in goals:
+                self.goals_listWidget.addItem('\t' + name)
+
+    def change_sorting(self):
+        self.goals_listWidget.clear()
+
+        if self.comboBox_to_sort.currentIndex() == 0:
+            self.set_standart_sorted_goals()
+        elif self.comboBox_to_sort.currentIndex() == 1:
+            self.set_only_blocks()
+        else:
+            self.set_only_goals()
+
+    def double_click_handling(self): # ИЗМЕНИТЬ!!!
+        if self.sender().currentItem().text()[:11] != 'Дедлайн до:':
+            if self.sender().currentItem().text()[-6:] == '(БЛОК)':
+                block_editing.Block_Editing(self.id, self.login, self.sender().currentItem().text()[1:-6], self.main_form)
+            else:
+                print('Не сработало')
 
     def create_block(self):
         id = get_id(self.login)
-        Create_Block(id, self.login, self.main_form)
+        creating_block.Create_Block(id, self.login, self.main_form)
+
+    def create_goal(self):
+        creating_goal.Creating_Goal(self.id, self.login, self.main_form)
 
     def set_profile_settings(self):
         self.lbl_name.setText(self.login)
@@ -55,7 +112,7 @@ class Sign_In(QDialog):
         self.btn_enter.clicked.connect(self.entering)
 
     def open_registration_form(self):
-        Registration_Form()
+        registration_form.Registration_Form()
 
     def entering(self):
         login = self.login_input.text()

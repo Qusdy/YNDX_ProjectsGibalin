@@ -81,3 +81,67 @@ def create_tables(id):
     cur.execute(f"""CREATE TABLE {name_of_table2}(name STRING, bottom_goals STRING, deadline DATE, folder, is_complete BOOLEAN DEFAULT False,  is_deleted BOOLEAN DEFAULT False)""")
     con.commit()
 
+def creating_block_in_db(name_of_table, name, date):
+    cur.execute(f'INSERT into {name_of_table}(name, deadline) VALUES(?, ?)', (name, date,))
+    con.commit()
+
+def creating_goal_in_db(table_name, name, date, folder):
+    cur.execute(f'INSERT into {table_name}(name, deadline, folder) VALUES(?, ?, ?)', (name, date, folder,))
+    con.commit()
+
+def get_all_dates(table_goals, table_blocks):
+    dates = set()
+    for el in get_list(search_blocks_dates(table_blocks)):
+        dates.add(el)
+    for el in get_list(search_goals_dates(table_goals)):
+        dates.add(el)
+    return sorted(list(dates))
+
+def get_list(list_with_kort):
+    result_list = []
+    for el in list_with_kort:
+        result_list.append(el[0])
+    return result_list
+
+def get_dates_without_repeating(list_with_dates):
+    return sorted(list(set(list_with_dates)))
+
+def search_blocks_dates(name_of_table):
+    return cur.execute(f'SELECT deadline FROM {name_of_table} ORDER BY deadline ASC').fetchall()
+
+def search_goals_dates(name_of_table):
+    return cur.execute(f'SELECT deadline FROM {name_of_table} WHERE folder is NULL ORDER BY deadline ASC').fetchall()
+
+def search_goals_in_block_dates(name_of_table, id):
+    return cur.execute(f'SELECT deadline FROM {name_of_table} WHERE folder = ? ORDER BY deadline', (id,)).fetchall()
+
+def get_all_objects(table_goals, table_blocks, date):
+    all_objects = []
+    for el in get_list(get_goals_on_this_date(table_goals, date)):
+        all_objects.append(el)
+    for el in get_list(get_blocks_on_this_date(table_blocks, date)):
+        all_objects.append(el)
+    return all_objects
+
+def get_goals_on_this_date(table_goals, date):
+    return cur.execute(f'SELECT name FROM {table_goals} WHERE deadline = ? AND folder is NULL', (date,)).fetchall()
+
+def get_blocks_on_this_date(table_blocks, date):
+    return cur.execute(f'SELECT name FROM {table_blocks} WHERE deadline = ?', (date,)).fetchall()
+
+def get_goals_in_block_at_this_date(table_name, id, date):
+    return cur.execute(f'SELECT name FROM {table_name} WHERE deadline = ? AND folder = ?', (date, id,)).fetchall()
+
+def is_there_that_folder_name(name_of_table, name):
+    if cur.execute(f'SELECT id FROM {name_of_table} WHERE name = ?', (name,)).fetchall() == []:
+        return False
+    return True
+
+def get_all_blocks(name_of_table):
+    return cur.execute(f'SELECT name FROM {name_of_table}').fetchall()
+
+def get_block_id(name_of_table, name_of_block):
+    return cur.execute(f'SELECT id FROM {name_of_table} WHERE name = ?', (name_of_block,)).fetchall()[0][0]
+
+def get_date(name_of_table, name_of_object):
+    return '.'.join(cur.execute(f'SELECT deadline FROM {name_of_table} WHERE name = ?', (name_of_object,)).fetchall()[0][0].split('-')[::-1])

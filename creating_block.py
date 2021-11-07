@@ -1,9 +1,10 @@
 from PyQt5 import uic
 from WORKING_WITH_DB_USERS import *
-from PyQt5.QtWidgets import QDialog, QDateEdit
-from errors import Name_Is_Not_Written
+from PyQt5.QtWidgets import QDialog
+from errors import Name_Is_Not_Written, Name_Already_Taken_Error
 import datetime as dt
-from main import Main_Form
+import main
+
 
 class Create_Block(QDialog):
     def __init__(self, id, login, main_form):
@@ -19,12 +20,15 @@ class Create_Block(QDialog):
         self.id = id
         self.login = login
 
+        self.btns_connecting()
+
+    def btns_connecting(self):
         self.btn_today.clicked.connect(self.today)
         self.btn_tomorrow.clicked.connect(self.tomorrow)
         self.btn_to_create.clicked.connect(self.creating_folder)
 
     def today(self):
-        date =  dt.datetime.now().date()
+        date = dt.datetime.now().date()
         self.dateEdit.setDate(date)
 
     def tomorrow(self):
@@ -38,13 +42,17 @@ class Create_Block(QDialog):
 
             date = '-'.join(self.dateEdit.text().split('-')[::-1])
 
-            # creating_block_in_db(id, name, date)
+            creating_block_in_db('blocks_' + str(self.id), name + '(БЛОК)', date)
 
             self.main_form.close()
-            Main_Form(self.new_form, self.login)
+            main.Main_Form(self.new_form, self.login)
         except Name_Is_Not_Written:
-            self.lbl_error.setText('Введите имя пользователя!')
+            self.lbl_error.setText('Введите имя папки!')
+        except Name_Already_Taken_Error:
+            self.lbl_error.setText('Такая папка уже есть!')
 
     def check_name(self, name):
         if name == '':
             raise Name_Is_Not_Written
+        elif is_there_that_folder_name('blocks_' + str(self.id), name + '(БЛОК)'):
+            raise Name_Already_Taken_Error

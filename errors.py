@@ -21,3 +21,7 @@ class Name_Already_Taken_Error(Length_Of_Password_Error):
 
 class Name_Is_Not_Written(Exception):
     pass
+
+class Using_The_Distinctive_Target_Of_Block(Exception):
+    pass
+

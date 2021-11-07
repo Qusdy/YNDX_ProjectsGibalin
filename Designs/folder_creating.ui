@@ -64,6 +64,11 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QPushButton" name="btn_today">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Сегодня</string>
       </property>
@@ -71,6 +76,11 @@
     </item>
     <item>
      <widget class="QPushButton" name="btn_tomorrow">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Завтра</string>
       </property>
@@ -78,6 +88,11 @@
     </item>
     <item>
      <widget class="QDateEdit" name="dateEdit">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="displayFormat">
        <string>dd-MM-yyyy</string>
       </property>

@@ -161,7 +161,7 @@
       <string>Создать блок целей</string>
      </property>
     </widget>
-    <widget class="QListView" name="goals_listWidget">
+    <widget class="QListWidget" name="goals_listWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -169,6 +169,14 @@
        <width>581</width>
        <height>431</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="spacing">
+      <number>20</number>
      </property>
     </widget>
    </widget>
