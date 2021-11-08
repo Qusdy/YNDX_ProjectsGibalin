@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
+    <width>749</width>
     <height>520</height>
    </rect>
   </property>
@@ -208,14 +208,19 @@
       </date>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
+    <widget class="QListWidget" name="listWidget_from_calendar">
      <property name="geometry">
       <rect>
        <x>380</x>
        <y>20</y>
-       <width>351</width>
+       <width>381</width>
        <height>431</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
      </property>
     </widget>
    </widget>
@@ -366,29 +371,38 @@
       </rect>
      </property>
     </widget>
-    <widget class="QWidget" name="verticalLayoutWidget">
+    <widget class="QListWidget" name="listWidget_profile">
      <property name="geometry">
       <rect>
-       <x>480</x>
+       <x>380</x>
        <y>210</y>
-       <width>160</width>
-       <height>138</height>
+       <width>341</width>
+       <height>261</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="lbl_goals_to_tomorrow">
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Задачи до завтра</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbl_goals_tomorrow">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>160</y>
+       <width>331</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Задачи до завтра:</string>
+     </property>
     </widget>
    </widget>
   </widget>

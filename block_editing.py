@@ -34,8 +34,9 @@ class Block_Editing(QDialog):
         self.all_goals = []
         for date in goals_dates:
             self.goals_listWidget.addItem('До ' + date)
-            goals = get_list(get_goals_in_block_at_this_date(self.goals_name_in_db, self.id, date))
-            self.all_goals.append(*goals)
+            goals = get_list(get_goals_in_block_at_this_date(self.goals_name_in_db, get_block_id(self.blocks_name_in_db, block_name + '(БЛОК)'), date))
+            for el in goals:
+                self.all_goals.append(el)
             for name in goals: # Очень заумная штука, которую я не совсем понял, нашел в интернете
                 item = QListWidgetItem()
                 item.setText(f'{name}')

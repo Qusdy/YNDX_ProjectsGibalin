@@ -78,7 +78,7 @@ def create_tables(id):
     name_of_table1 = 'blocks_' + str(id)
     name_of_table2 = 'goals_' + str(id)
     cur.execute(f"""CREATE TABLE {name_of_table1}(id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING, deadline DATE, is_deleted BOOLEAN DEFAULT False)""")
-    cur.execute(f"""CREATE TABLE {name_of_table2}(name STRING, bottom_goals STRING, deadline DATE, folder, is_complete BOOLEAN DEFAULT False,  is_deleted BOOLEAN DEFAULT False)""")
+    cur.execute(f"""CREATE TABLE {name_of_table2}(name STRING, deadline DATE, folder, is_complete BOOLEAN DEFAULT False,  is_deleted BOOLEAN DEFAULT False)""")
     con.commit()
 
 def creating_block_in_db(name_of_table, name, date):

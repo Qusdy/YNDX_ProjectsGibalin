@@ -5,6 +5,7 @@ from PyQt5.QtGui import QPixmap
 from errors import Invalid_Login, Incorrect_Password
 import registration_form, creating_block, block_editing, creating_goal, settings_form
 from WORKING_WITH_DB_USERS import *
+import datetime as dt
 
 
 class Main_Form(QDialog):
@@ -33,6 +34,16 @@ class Main_Form(QDialog):
         self.btn_making_goal.clicked.connect(self.create_goal)
         self.comboBox_to_sort.currentIndexChanged.connect(self.change_sorting)
         self.goals_listWidget.itemDoubleClicked.connect(self.double_click_handling)
+        self.calendarWidget.clicked.connect(self.get_goals_from_widget_date)
+
+    def get_goals_from_widget_date(self):
+        self.listWidget_from_calendar.clear()
+        date_in_bd = self.sender().selectedDate().toString('yyyy-MM-dd')
+        self.listWidget_from_calendar.addItem('.'.join(date_in_bd.split('-')[::-1]))
+        for el in get_list(get_goals_on_this_date(self.table_goals, date_in_bd)):
+            self.listWidget_from_calendar.addItem(f'\t{el}')
+        for el in get_list(get_blocks_on_this_date(self.table_blocks, date_in_bd)):
+            self.listWidget_from_calendar.addItem(f'\t{el}')
 
     def set_standart_sorted_goals(self):
         # Получим отсортированный список дат
@@ -73,12 +84,12 @@ class Main_Form(QDialog):
         else:
             self.set_only_goals()
 
-    def double_click_handling(self): # ИЗМЕНИТЬ!!!
+    def double_click_handling(self):
         if self.sender().currentItem().text()[:11] != 'Дедлайн до:':
             if self.sender().currentItem().text()[-6:] == '(БЛОК)':
                 block_editing.Block_Editing(self.id, self.login, self.sender().currentItem().text()[1:-6], self.main_form)
             else:
-                print('Не сработало')
+                print('Не реализовано')
 
     def create_block(self):
         id = get_id(self.login)
@@ -92,7 +103,11 @@ class Main_Form(QDialog):
 
         self.photo_of_profile = get_picture(self.login) + '.' + get_picture_format(self.login)
         self.lbl_picture.setPixmap(QPixmap(f'Фотографии пользователей/{self.photo_of_profile}'))
-
+        today = dt.datetime.now().date()
+        for el in get_list(get_blocks_on_this_date(self.table_blocks, today)):
+            self.listWidget_profile.addItem(el)
+        for el in get_list(get_goals_on_this_date(self.table_goals, today)):
+            self.listWidget_profile.addItem(el)
         self.btn_settings.clicked.connect(self.settings_form_open)
 
     def settings_form_open(self):
